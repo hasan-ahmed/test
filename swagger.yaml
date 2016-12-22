@@ -1,0 +1,120 @@
+swagger: "2.0"
+info:
+  description: |
+    # Introduction
+    This API document outlines how you can access different Nuance services using our concise, yet flexible HTTP API.
+    This API provides access to the following services:
+      - Speech Recognition
+      - Dialog
+      - Speech Recognition & Dialog
+      - NLU
+      - Speech Recognition & NLU
+      - Text to Speech (TTS)
+      - Vocal Password
+    # API Basics
+      - All requests must include the `Content-Type: application/json`
+    # Authentication
+    You must include the following header in every request to authenticate:
+      - `nmaid: <your nmaid>`
+      - `nmaidkey: <your nmaid key>`
+  x-logo:
+    url: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a8/Nuance_Communications_logo.svg/640px-Nuance_Communications_logo.svg.png"
+  version: "1.0.0"
+  title: Nuance HTTP API
+  termsOfService: http://nuancecommunications.com
+  contact:
+    email: hasan.ahmed@nuance.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: <ip>
+basePath: /nina-webapi/
+schemes:
+  - https
+tags:
+  - name: Speech Recognition
+    description: Speech Recognition Functions
+paths:
+  /DoSpeechRecognition:
+    post:
+      tags:
+        - Speech Recognition
+      summary: Speech Recognition
+      description: |
+        Does speech recognition operations on an audio file using the MREC , NTE or NR engines.
+      operationId: speechRecognition
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: "`sr_audio_file` on which the speech recognition is to be done"
+          required: true
+          schema:
+            $ref: "#/definitions/Speech_Reco_Payload"
+      responses:
+        "200":
+          description: Successful operation.
+          schema:
+            $ref: "#/definitions/Speech_Reco_Response"
+        "400":
+          description: Bad request. Invalid or missing parameter.
+        "401":
+          description: Unauthorized. API key is missing or invalid.
+definitions:
+  Speech_Reco_Payload:
+    type: object
+    required:
+      - address
+      - city
+      - country
+      - state
+      - zip
+    properties:
+      sr_audio_file:
+        description: Direct URL to the audio file. Must be a WAV, MP4 or AAC file.
+        type: string
+        example: https://dl.dropboxusercontent.com/s/4ygn9m8wscadl22/TestAudioUpload.wav
+      sr_engine:
+        description: The `sr_engine` parameter is optional, the default engine is specified by your licence file (specific to a given NMAID ID). Its value must be one of the following strings: "MREC", "NTE", or "NR".
+        type: string
+        example: MREC | NTE | NR
+      sr_engine_parameters:
+        description: The `sr_engine_parameters` parameter is an optional json object and only looked at when engine = NTE.
+        allOf:
+          - $ref: '#/definitions/sr_engine_parameters'
+      user:
+        description: The user id  for who this request is being executed.
+        type: string
+        example: "123423"
+  sr_engine_parameters:
+    type: object
+    required:
+      - operating_mode
+    properties:
+      operating_mode:
+        description: The operating mode. It must be one of the following strings: "accurate", "fast", "warp"
+        type: strings
+        example: accurate
+    Speech_Reco_Response:
+      type: object
+      required:
+        - transcription
+      properties:
+        transcription:
+          description: The transcription results.
+          type: string
+          example: "Hello"
+  errorModel:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
