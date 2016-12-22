@@ -98,15 +98,15 @@ definitions:
         description: The operating mode. It must be one of the following strings: "accurate", "fast", "warp"
         type: strings
         example: accurate
-    Speech_Reco_Response:
-      type: object
-      required:
-        - transcription
-      properties:
-        transcription:
-          description: The transcription results.
-          type: string
-          example: "Hello"
+  Speech_Reco_Response:
+    type: object
+    required:
+      - transcription
+    properties:
+      transcription:
+        description: The transcription results.
+        type: string
+        example: "Hello"
   errorModel:
     type: object
     required:
