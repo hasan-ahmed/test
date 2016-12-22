@@ -80,7 +80,7 @@ definitions:
       sr_engine:
         description: The `sr_engine` parameter is optional, the default engine is specified by your licence file (specific to a given NMAID ID). Its value must be one of the following strings: "MREC", "NTE", or "NR".
         type: string
-        example: MREC | NTE | NR
+        example: MRECe, NR, or NTE
       sr_engine_parameters:
         description: The `sr_engine_parameters` parameter is an optional json object and only looked at when engine = NTE.
         allOf:
