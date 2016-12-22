@@ -74,7 +74,7 @@ definitions:
         type: string
         example: https://dl.dropboxusercontent.com/s/4ygn9m8wscadl22/TestAudioUpload.wav
       sr_engine:
-        description: The `sr_engine` parameter is optional, the default engine is specified by your licence file (specific to a given NMAID ID). Its value must be one of the following strings: "MREC", "NTE", or "NR".
+        description: The sr_engine parameter is optional, the default engine is specified by your licence file (specific to a given NMAID ID). Its value must be one of the following strings: MREC, NTE, or NR.
         type: string
         example: MREC, NR, or NTE
       sr_engine_parameters:
