@@ -67,11 +67,7 @@ definitions:
   Speech_Reco_Payload:
     type: object
     required:
-      - address
-      - city
-      - country
-      - state
-      - zip
+      - sr_audio_file
     properties:
       sr_audio_file:
         description: Direct URL to the audio file. Must be a WAV, MP4 or AAC file.
@@ -80,10 +76,9 @@ definitions:
       sr_engine:
         description: The `sr_engine` parameter is optional, the default engine is specified by your licence file (specific to a given NMAID ID). Its value must be one of the following strings: "MREC", "NTE", or "NR".
         type: string
-        example: MRECe, NR, or NTE
+        example: MREC, NR, or NTE
       sr_engine_parameters:
         description: The `sr_engine_parameters` parameter is an optional json object and only looked at when engine = NTE.
-        allOf:
           - $ref: '#/definitions/sr_engine_parameters'
       user:
         description: The user id  for who this request is being executed.
