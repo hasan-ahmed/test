@@ -78,7 +78,7 @@ definitions:
         type: string
         example: MREC, NR, or NTE
       sr_engine_parameters:
-        description: The `sr_engine_parameters` parameter is an optional json object and only looked at when engine = NTE.
+        description: The sr_engine_parameters parameter is an optional json object and only looked at when engine = NTE.
         allOf:
           - $ref: '#/definitions/sr_engine_parameters'
       user:
