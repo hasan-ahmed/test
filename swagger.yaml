@@ -91,7 +91,7 @@ definitions:
       - operating_mode
     properties:
       operating_mode:
-        description: The operating mode. It must be one of the following: accurate, fast, warp.
+        description: The operating mode.
         type: strings
         example: accurate
   Speech_Reco_Response:
