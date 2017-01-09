@@ -17,6 +17,8 @@ info:
     You must include the following header in every request to authenticate:
       - `nmaid: <your nmaid>`
       - `nmaidkey: <your nmaid key>`
+  x-logo:
+    url: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a8/Nuance_Communications_logo.svg/640px-Nuance_Communications_logo.svg.png"
   version: "1.0.0"
   title: Nuance HTTP API
   termsOfService: http://nuancecommunications.com
@@ -33,7 +35,9 @@ tags:
   - name: Speech Recognition
     description: Speech Recognition Functions
   - name: TTS
-    description: Text To Speech FUnctions
+    description: Text To Speech Functions
+  - name: NLU
+    description: Natural Language Understading Functions
 paths:
   /DoSpeechRecognition:
     post:
@@ -86,6 +90,32 @@ paths:
           description: Bad request. Invalid or missing parameter.
         "401":
           description: Unauthorized. API key is missing or invalid.
+  /NLU:
+    post:
+      tags:
+        - NLU
+      summary: NLU
+      description: "Does NLU operations on a text string and returns the results"
+      operationId: NLU
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: "#/definitions/nlu_payload"
+      responses:
+        "200":
+          description: Successful operation.
+          schema:
+            $ref: "#/definitions/nlu_response"
+        "400":
+          description: Bad request. Invalid or missing parameter.
+        "401":
+          description: Unauthorized. API key is missing or invalid.
 definitions:
   Speech_Reco_Payload:
     type: object
@@ -114,7 +144,7 @@ definitions:
       - operating_mode
     properties:
       operating_mode:
-        description: The operating mode.
+        description: The operating mode. Must be accurate, fast or warp.
         type: strings
         example: accurate
   Speech_Reco_Response:
@@ -144,13 +174,78 @@ definitions:
         type: boolean
         example: true
       sr_engine:
-        description: This parameter is optional and is only looked that when barge-in is set to true.Your license file (specific to your NMAID) specifies the default engine. Its value must be MREC, NTE or NR.
+        description: This parameter is optional and is only looked that when barge-in is set to true. Your license file (specific to your NMAID) specifies the default engine. Its value must be MREC, NTE or NR.
         type: string
         exaple: MREC
       sr_engine_parameters:
         description: The sr_engine_parameters parameter is an optional json object and only looked at when engine = NTE.
         allOf:
           - $ref: '#/definitions/sr_engine_parameters'
+      user:
+        description: The user id  for who this request is being executed.
+        type: string
+        example: "123423"
+    nlu_payload:
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          description: The input text on which to perform NLU.
+          type: string
+          example: Hello!
+        nlu_engine:
+          description: This parameter is optional, the default engine is specified by your licence file (specific to your NMAID). Its value must be NR or NLE.
+          type: string
+          example: NR
+        nlu_engine_parameters:
+          description: The sr_engine_parameters parameter is an optional json object and only looked at when engine = NTE.
+          allOf:
+            - $ref: '#/definitions/nlu_engine_parameters'
+        user:
+          description: The user id  for who this request is being executed.
+          type: string
+          example: "123423"
+    nlu_engine_parameters:
+      type: object
+      required:
+        - nleModelURL
+        - nleModelName
+      properties:
+        nleModelURL:
+          type: string
+        nleModelName:
+          type: string
+    nlu_response:
+      type: object
+      required:
+        - results
+      properties:
+        results:
+          description: The results of the NLU operation.
+          type: array
+          results:
+            $ref: '#/definitions/nlu_result_item'
+    nlu_result_item:
+      type: object
+      required:
+        - concepts
+        - confidence
+        - intent
+        - literal
+      properties:
+        concepts:
+          type: array
+        confidence:
+          type: integer
+          format: int64
+          example: 25
+        intent:
+          type: string
+          example: SOCIAL_GREETING
+        literal:
+          type: string
+          example: hello
   errorModel:
     type: object
     required:
