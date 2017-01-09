@@ -104,7 +104,6 @@ paths:
       parameters:
         - in: body
           name: body
-          description: "`sr_audio_file` on which the speech recognition is to be done"
           required: true
           schema:
             $ref: "#/definitions/nlu_payload"
@@ -186,65 +185,67 @@ definitions:
         description: The user id  for who this request is being executed.
         type: string
         example: "123423"
-    nlu_payload:
-      type: object
-      required:
-        - text
-      properties:
-        text:
-          description: The input text on which to perform NLU.
-          type: string
-          example: Hello!
-        nlu_engine:
-          description: This parameter is optional, the default engine is specified by your licence file (specific to your NMAID). Its value must be NR or NLE.
-          type: string
-          example: NR
-        nlu_engine_parameters:
-          description: This parameter is an optional json object and only looked at when nlu_engine = NLE.
-          allOf:
-            - $ref: '#/definitions/sr_engine_parameters'
-        user:
-          description: The user id  for who this request is being executed.
-          type: string
-          example: "123423"
-    nlu_engine_parameters:
-      type: object
-      required:
-        - nleModelURL
-        - nleModelName
-      properties:
-        nleModelURL:
-          type: string
-        nleModelName:
-          type: string
-    nlu_response:
-      type: object
-      required:
-        - results
-      properties:
+  nlu_payload:
+    type: object
+    required:
+      - text
+    properties:
+      text:
+        description: The input text on which to perform NLU.
+        type: string
+        example: Hello!
+      nlu_engine:
+        description: This parameter is optional, the default engine is specified by your licence file (specific to your NMAID). Its value must be NR or NLE.
+        type: string
+        example: NR
+      nlu_engine_parameters:
+        description: This parameter is an optional json object and only looked at when nlu_engine = NLE.
+        allOf:
+          - $ref: '#/definitions/nlu_engine_parameters'
+      user:
+        description: The user id  for who this request is being executed.
+        type: string
+        example: "123423"
+  nlu_engine_parameters:
+    type: object
+    required:
+      - nleModelURL
+      - nleModelName
+    properties:
+      nleModelURL:
+        type: string
+      nleModelName:
+        type: string
+  nlu_response:
+    type: object
+    required:
+      - results
+    properties:
+      results:
+        description: The results of the NLU operation.
+        type: array
         results:
-          description: The results of the NLU operation.
-          type: array
-    nlu_result_item:
-      type: object
-      required:
-        - concepts
-        - confidence
-        - intent
-        - literal
-      properties:
-        concepts:
-          type: array
-        confidence:
-          type: integer
-          format: int64
-          example: 25
-        intent:
-          type: string
-          example: SOCIAL_GREETING
-        literal:
-          type: string
-          example: hello
+          $ref: '#/definitions/nlu_result_item'
+  nlu_result_item:
+    type: object
+    required:
+      - concepts
+      - confidence
+      - intent
+      - literal
+    properties:
+      concepts:
+        type: array
+      confidence:
+        type: integer
+        format: int64
+        example: 25
+      intent:
+        type: string
+        example: SOCIAL_GREETING
+      literal:
+        type: string
+        example: hello
   errorModel:
     type: object
     required:
