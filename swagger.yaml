@@ -235,16 +235,20 @@ definitions:
       - literal
     properties:
       concepts:
+        description: The concepts.
         type: string
         example: array
       confidence:
+        description: The confidence level of the NLU result.
         type: integer
-        format: int64
+        format: int32
         example: 25
       intent:
+        description: The intent.
         type: string
         example: SOCIAL_GREETING
       literal:
+        description: The literal. 
         type: string
         example: hello
   errorModel:
