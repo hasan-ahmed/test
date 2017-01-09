@@ -225,7 +225,7 @@ definitions:
         description: The results of the NLU operation.
         type: array
         items:
-          $ref: '#/definitions/nlu_engine_parameters'
+          $ref: '#/definitions/nlu_result_item'
   nlu_result_item:
     type: object
     required:
@@ -237,7 +237,7 @@ definitions:
       concepts:
         description: The concepts.
         type: string
-        example: array
+        example: []
       confidence:
         description: The confidence level of the NLU result.
         type: integer
