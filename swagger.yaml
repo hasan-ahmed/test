@@ -236,7 +236,7 @@ definitions:
     properties:
       concepts:
         description: The concepts.
-        type: string
+        type: array
         example: []
       confidence:
         description: The confidence level of the NLU result.
