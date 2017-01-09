@@ -179,6 +179,8 @@ definitions:
         exaple: MREC
       sr_engine_parameters:
         description: The sr_engine_parameters parameter is an optional json object and only looked at when engine = NTE.
+        allOf:
+          - $ref: '#/definitions/sr_engine_parameters'
       user:
         description: The user id  for who this request is being executed.
         type: string
@@ -198,8 +200,6 @@ definitions:
           example: NR
         nlu_engine_parameters:
           description: This parameter is an optional json object and only looked at when nlu_engine = NLE.
-          allOf:
-            - $ref: '#/definitions/nlu_engine_parameters'
         user:
           description: The user id  for who this request is being executed.
           type: string
