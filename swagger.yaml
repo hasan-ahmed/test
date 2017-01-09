@@ -199,7 +199,7 @@ definitions:
           type: string
           example: NR
         nlu_engine_parameters:
-          description: The sr_engine_parameters parameter is an optional json object and only looked at when engine = NTE.
+          description: This parameter is an optional json object and only looked at when nlu_engine = NLE. 
           allOf:
             - $ref: '#/definitions/nlu_engine_parameters'
         user:
