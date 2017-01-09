@@ -225,7 +225,7 @@ definitions:
         description: The results of the NLU operation.
         type: array
         items:
-          $ref: '#/definitions/nlu_result_item'
+          $ref: '#/definitions/nlu_engine_parameters'
   nlu_result_item:
     type: object
     required:
