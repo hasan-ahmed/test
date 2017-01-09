@@ -17,8 +17,6 @@ info:
     You must include the following header in every request to authenticate:
       - `nmaid: <your nmaid>`
       - `nmaidkey: <your nmaid key>`
-  x-logo:
-    url: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a8/Nuance_Communications_logo.svg/640px-Nuance_Communications_logo.svg.png"
   version: "1.0.0"
   title: Nuance HTTP API
   termsOfService: http://nuancecommunications.com
@@ -34,14 +32,15 @@ schemes:
 tags:
   - name: Speech Recognition
     description: Speech Recognition Functions
+  - name: TTS
+    description: Text To SPeech Functions
 paths:
   /DoSpeechRecognition:
     post:
       tags:
         - Speech Recognition
       summary: Speech Recognition
-      description: |
-        Does speech recognition operations on an audio file using the MREC , NTE or NR engines.
+      description: "Does speech recognition operations on an audio file using the MREC , NTE or NR engines."
       operationId: speechRecognition
       consumes:
         - application/json
@@ -68,8 +67,7 @@ paths:
       tags:
         - TTS
       summary: Text To Speech
-      description: |
-        Does TTS operations on the provided string.
+      description: "Does TTS operations on the provided string."
       operationId: TTS
       consumes:
         - application/json
@@ -153,7 +151,7 @@ definitions:
       sr_engine_parameters:
         description: The `sr_engine_parameters` parameter is an optional json object and only looked at when engine = NTE.
         allOf:
-          - $ref: '#/definitions/sr_engine_parameters'      
+          - $ref: '#/definitions/sr_engine_parameters'
   errorModel:
     type: object
     required:
