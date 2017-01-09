@@ -33,7 +33,7 @@ tags:
   - name: Speech Recognition
     description: Speech Recognition Functions
   - name: TTS
-    description: Text To Speech Functions
+    description: Text To Speech FUnctions
 paths:
   /DoSpeechRecognition:
     post:
@@ -58,30 +58,6 @@ paths:
           description: Successful operation.
           schema:
             $ref: "#/definitions/Speech_Reco_Response"
-        "400":
-          description: Bad request. Invalid or missing parameter.
-        "401":
-          description: Unauthorized. API key is missing or invalid.
-  /TTS:
-    post:
-      tags:
-        - TTS
-      summary: Text To Speech
-      description: "Does TTS operations on the provided string."
-      operationId: TTS
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          required: true
-          schema:
-            $ref: "#/definitions/Speech_Reco_Payload"
-      responses:
-        "200":
-          description: ByteBuffer of raw PCM Data.
         "400":
           description: Bad request. Invalid or missing parameter.
         "401":
