@@ -224,7 +224,7 @@ definitions:
       results:
         description: The results of the NLU operation.
         type: array
-        results:
+        items:
           $ref: '#/definitions/nlu_result_item'
   nlu_result_item:
     type: object
@@ -248,7 +248,7 @@ definitions:
         type: string
         example: SOCIAL_GREETING
       literal:
-        description: The literal. 
+        description: The literal.
         type: string
         example: hello
   errorModel:
