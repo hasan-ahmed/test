@@ -117,15 +117,15 @@ definitions:
         type: string
         example: text
       barge-in:
-        description: This parameter is optional and has a default value of "false".
+        description: This parameter is optional and has a default value of false.
         type: boolean
         example: true
       sr_engine:
-        description: This parameter is optional and is only looked that when barge-in is set to true.Your license file (specific to your NMAID) specifies the default engine. Its value must be one of the following: "MREC", "NTE" or "NR"
+        description: This parameter is optional and is only looked that when barge-in is set to true.Your license file (specific to your NMAID) specifies the default engine. Its value must be one of the following: MREC, NTE or NR.
         type: string
         exaple: MREC
       sr_engine_parameters:
-        description: The `sr_engine_parameters` parameter is an optional json object and only looked at when engine = NTE.
+        description: The sr_engine_parameters parameter is an optional json object and only looked at when engine = NTE.
         allOf:
           - $ref: '#/definitions/sr_engine_parameters'
   errorModel:
