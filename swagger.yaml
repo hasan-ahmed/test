@@ -237,7 +237,6 @@ definitions:
       concepts:
         description: The concepts.
         type: array
-        example: []
       confidence:
         description: The confidence level of the NLU result.
         type: integer
