@@ -235,9 +235,8 @@ definitions:
       - literal
     properties:
       concepts:
-        type: array
-        items:
-          type: string
+        type: string
+        example: array
       confidence:
         type: integer
         format: int64
