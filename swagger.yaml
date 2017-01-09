@@ -236,6 +236,8 @@ definitions:
     properties:
       concepts:
         type: array
+        items:
+          type: string
       confidence:
         type: integer
         format: int64
