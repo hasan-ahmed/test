@@ -63,6 +63,31 @@ paths:
           description: Bad request. Invalid or missing parameter.
         "401":
           description: Unauthorized. API key is missing or invalid.
+  /TTS
+    post:
+      tags:
+        - TTS
+      summary: Text To Speech
+      description: |
+        Does TTS operations on the provided string.
+      operationId: TTS
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: "#/definitions/Speech_Reco_Payload"
+      responses:
+        "200":
+          description: ByteBuffer of raw PCM Data.
+        "400":
+          description: Bad request. Invalid or missing parameter.
+        "401":
+          description: Unauthorized. API key is missing or invalid.
 definitions:
   Speech_Reco_Payload:
     type: object
@@ -85,6 +110,7 @@ definitions:
         description: The user id  for who this request is being executed.
         type: string
         example: "123423"
+
   sr_engine_parameters:
     type: object
     required:
@@ -103,6 +129,31 @@ definitions:
         description: The transcription results.
         type: string
         example: "Hello"
+  playaudio_payload:
+    type: object
+    required:
+      - text
+    properties:
+      text:
+        description: The text for which the TTS service should be performed.
+        type: string
+        example: Hello!
+      tts-type:
+        description: This parameter is optional and has a default value of text. Its value must be one of the following: "text", "ssml" or "uri".
+        type: string
+        example: text
+      barge-in:
+        description: This parameter is optional and has a default value of "false".
+        type: boolean
+        example: true
+      sr_engine:
+        description: This parameter is optional and is only looked that when barge-in is set to true.Your license file (specific to your NMAID) specifies the default engine. Its value must be one of the following: "MREC", "NTE" or "NR"
+        type: string
+        exaple: MREC
+      sr_engine_parameters:
+        description: The `sr_engine_parameters` parameter is an optional json object and only looked at when engine = NTE.
+        allOf:
+          - $ref: '#/definitions/sr_engine_parameters'      
   errorModel:
     type: object
     required:
