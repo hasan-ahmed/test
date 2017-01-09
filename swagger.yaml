@@ -113,7 +113,7 @@ definitions:
         type: string
         example: Hello!
       tts-type:
-        description: This parameter is optional and has a default value of text. Its value must be one of the following: "text", "ssml" or "uri".
+        description: This parameter is optional and has a default value of text. Its value must be one of the following: text, ssml or uri.
         type: string
         example: text
       barge-in:
