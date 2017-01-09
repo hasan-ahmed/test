@@ -104,6 +104,7 @@ paths:
       parameters:
         - in: body
           name: body
+          description: "`sr_audio_file` on which the speech recognition is to be done"
           required: true
           schema:
             $ref: "#/definitions/nlu_payload"
@@ -224,8 +225,6 @@ definitions:
         results:
           description: The results of the NLU operation.
           type: array
-          results:
-            $ref: '#/definitions/nlu_result_item'
     nlu_result_item:
       type: object
       required:
