@@ -38,6 +38,8 @@ tags:
     description: Text To Speech Functions
   - name: NLU
     description: Natural Language Understading Functions
+  - name: Dialog
+    description: Dialog Functions
 paths:
   /DoSpeechRecognition:
     post:
@@ -82,7 +84,7 @@ paths:
           name: body
           required: true
           schema:
-            $ref: "#/definitions/Speech_Reco_Payload"
+            $ref: "#/definitions/playaudio_payload"
       responses:
         "200":
           description: ByteBuffer of raw PCM Data.
@@ -250,6 +252,65 @@ definitions:
         description: The literal.
         type: string
         example: hello
+  dialog_payload:
+    type: object
+    required:
+      - text
+    properties:
+      text:
+        description: The input text.
+        type: string
+        example: Hello
+      dialog_engine:
+        description: This parameter is optional. The default engine is specified in your licence file (specific to your NMAID). Its value must be NIW or NCE.
+        type: string
+        example: NIW
+      dialog_engine_parameters:
+        description: This parameter is an optional json object and only looked at when nlu_engine = NCE.
+        allOf:
+          - $ref: '#/definitions/dialog_engine_parameters'
+      user:
+        description: The user id  for who this request is being executed.
+        type: string
+        example: "123423"
+  dialog_engine_parameters:
+    type: object
+    required:
+      - language
+      - nleModelURL
+      - nleModelName
+      - nceModelURL
+      - nceModelName
+      - nceModelVersion
+    properties:
+      language:
+        type: string
+      nleModelURL:
+        type: string
+      nleModelName:
+        type: string
+      nceModelURL:
+        type: string
+      nceModelName:
+        type: string
+      nceModelVersion:
+        type: string
+  dialog_response:
+    type: object
+    required:
+      - OutText
+      - AlternateOutText
+      - AlternateOutText2
+    properties:
+      OutText:
+        type: string
+        example: Good afternoon! I'm Nina your virtual assistant. How can I help you?
+      AlternateOutText:
+        type: string
+        example: Good afternoon! I'm Nina your virtual assistant. How can I help you?
+      AlternateOutText2:
+        type: string
+        example: Good afternoon! I'm Nina your virtual assistant. How can I help you?
   errorModel:
     type: object
     required:
