@@ -144,32 +144,6 @@ paths:
           description: Bad request. Invalid or missing parameter.
         "401":
           description: Unauthorized. API key is missing or invalid.
-  /Dialog:
-    post:
-      tags:
-        - Dialog
-      summary: Dialog
-      description: "Performs dialog operations on a given input string text."
-      operationId: Dialog
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          required: true
-          schema:
-            $ref: "#/definitions/dialog_payload"
-      responses:
-        "200":
-          description: Successful operation.
-          schema:
-            $ref: "#/definitions/dialog_response"
-        "400":
-          description: Bad request. Invalid or missing parameter.
-        "401":
-          description: Unauthorized. API key is missing or invalid.
   /SpeechRecognitionAndDialog:
     post:
       tags:
@@ -192,6 +166,32 @@ paths:
           description: Successful operation.
           schema:
             $ref: "#/definitions/nlu_response"
+        "400":
+          description: Bad request. Invalid or missing parameter.
+        "401":
+          description: Unauthorized. API key is missing or invalid.
+  /Dialog:
+    post:
+      tags:
+        - Dialog
+      summary: Dialog
+      description: "Performs dialog operations on a given input string text."
+      operationId: Dialog
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: "#/definitions/dialog_payload"
+      responses:
+        "200":
+          description: Successful operation.
+          schema:
+            $ref: "#/definitions/dialog_response"
         "400":
           description: Bad request. Invalid or missing parameter.
         "401":
