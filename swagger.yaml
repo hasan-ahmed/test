@@ -118,6 +118,32 @@ paths:
           description: Bad request. Invalid or missing parameter.
         "401":
           description: Unauthorized. API key is missing or invalid.
+  /NLU:
+    post:
+      tags:
+        - NLU
+      summary: SpeechRecognitionAndNLU
+      description: "Performs speech recognition and NLU operations on a given audio file. "
+      operationId: SpeechRecognitionAndNLU
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: "#/definitions/Speech_Reco_NLU_Payload"
+      responses:
+        "200":
+          description: Successful operation.
+          schema:
+            $ref: "#/definitions/nlu_response"
+        "400":
+          description: Bad request. Invalid or missing parameter.
+        "401":
+          description: Unauthorized. API key is missing or invalid.
   /Dialog:
     post:
       tags:
@@ -135,6 +161,32 @@ paths:
           required: true
           schema:
             $ref: "#/definitions/dialog_payload"
+      responses:
+        "200":
+          description: Successful operation.
+          schema:
+            $ref: "#/definitions/dialog_response"
+        "400":
+          description: Bad request. Invalid or missing parameter.
+        "401":
+          description: Unauthorized. API key is missing or invalid.
+  /SpeechRecognitionAndDialog:
+    post:
+      tags:
+        - Dialog
+      summary: Speech Recognition and Dialog
+      description: "Performs speecg recognition and dialog operations on a given audio file."
+      operationId: SpeechRecognitionAndDialog
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: "#/definitions/Speech_Reco_Dialog_Payload"
       responses:
         "200":
           description: Successful operation.
@@ -337,6 +389,64 @@ definitions:
       AlternateOutText2:
         type: string
         example: Good afternoon! I'm Nina your virtual assistant. How can I help you?
+  Speech_Reco_Dialog_Payload:
+    type: object
+    required:
+      - sr_audio_file
+    properties:
+      sr_audio_file:
+        description: Direct URL to the audio file. Must be a WAV, MP4 or AAC file.
+        type: string
+        example: https://dl.dropboxusercontent.com/s/4ygn9m8wscadl22/TestAudioUpload.wav
+      sr_engine:
+        description: The sr_engine parameter is optional, the default engine is specified by your licence file (specific to a given NMAID ID).
+        type: string
+        example: MREC, NR, or NTE
+      sr_engine_parameters:
+        description: The sr_engine_parameters parameter is an optional json object and only looked at when engine = NTE.
+        allOf:
+          - $ref: '#/definitions/sr_engine_parameters'
+      dialog_engine:
+        description: This parameter is optional. The default engine is specified in your licence file (specific to your NMAID). Its value must be NIW or NCE.
+        type: string
+        example: NIW
+      dialog_engine_parameters:
+        description: This parameter is an optional json object and only looked at when nlu_engine = NCE.
+        allOf:
+          - $ref: '#/definitions/dialog_engine_parameters'
+      user:
+        description: The user id  for who this request is being executed.
+        type: string
+        example: "123423"
+  Speech_Reco_NLU_Payload:
+    type: object
+    required:
+      - sr_audio_file
+    properties:
+      sr_audio_file:
+        description: Direct URL to the audio file. Must be a WAV, MP4 or AAC file.
+        type: string
+        example: https://dl.dropboxusercontent.com/s/4ygn9m8wscadl22/TestAudioUpload.wav
+      sr_engine:
+        description: The sr_engine parameter is optional, the default engine is specified by your licence file (specific to a given NMAID ID).
+        type: string
+        example: MREC, NR, or NTE
+      sr_engine_parameters:
+        description: The sr_engine_parameters parameter is an optional json object and only looked at when engine = NTE.
+        allOf:
+          - $ref: '#/definitions/sr_engine_parameters'
+      nlu_engine:
+        description: This parameter is optional, the default engine is specified by your licence file (specific to your NMAID). Its value must be NR or NLE.
+        type: string
+        example: NR
+      nlu_engine_parameters:
+        description: This parameter is an optional json object and only looked at when nlu_engine = NLE.
+        allOf:
+          - $ref: '#/definitions/nlu_engine_parameters'
+      user:
+        description: The user id  for who this request is being executed.
+        type: string
+        example: "123423"
   errorModel:
     type: object
     required:
