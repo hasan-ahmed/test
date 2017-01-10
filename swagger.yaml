@@ -122,7 +122,7 @@ paths:
     post:
       tags:
         - NLU
-      summary: SpeechRecognitionAndNLU
+      summary: Speech Recognition And NLU
       description: "Performs speech recognition and NLU operations on a given audio file. "
       operationId: SpeechRecognitionAndNLU
       consumes:
