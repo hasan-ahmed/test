@@ -148,8 +148,8 @@ paths:
     post:
       tags:
         - Dialog
-      summary: Dilaog
-      description: "Performs dialog operations on a given input string texy."
+      summary: Dialog
+      description: "Performs dialog operations on a given input string text."
       operationId: Dialog
       consumes:
         - application/json
@@ -173,10 +173,10 @@ paths:
   /SpeechRecognitionAndDialog:
     post:
       tags:
-        - Dialog
-      summary: Speech Recognition and Dialog
-      description: "Performs speech recognition and dialog on a given audio file."
-      operationId: Speech Recognition and Dialog
+        - NLU
+      summary: Speech Recognition And Dialog
+      description: "Performs speech recognition and Dialog operations on a given audio file. "
+      operationId: SpeechRecognitionAndDialog
       consumes:
         - application/json
       produces:
@@ -186,12 +186,12 @@ paths:
           name: body
           required: true
           schema:
-            $ref: "#/definitions/dialog_payload"
+            $ref: "#/definitions/Speech_Reco_NLU_Payload"
       responses:
         "200":
           description: Successful operation.
           schema:
-            $ref: "#/definitions/dialog_response"
+            $ref: "#/definitions/nlu_response"
         "400":
           description: Bad request. Invalid or missing parameter.
         "401":
