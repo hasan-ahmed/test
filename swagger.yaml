@@ -170,32 +170,6 @@ paths:
           description: Bad request. Invalid or missing parameter.
         "401":
           description: Unauthorized. API key is missing or invalid.
-  /SpeechRecognitionAndDialog:
-    post:
-      tags:
-        - Dialog
-      summary: Speech Recognition and Dialog
-      description: "Performs speecg recognition and dialog operations on a given audio file."
-      operationId: SpeechRecognitionAndDialog
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          required: true
-          schema:
-            $ref: "#/definitions/Speech_Reco_Dialog_Payload"
-      responses:
-        "200":
-          description: Successful operation.
-          schema:
-            $ref: "#/definitions/dialog_response"
-        "400":
-          description: Bad request. Invalid or missing parameter.
-        "401":
-          description: Unauthorized. API key is missing or invalid.
 definitions:
   Speech_Reco_Payload:
     type: object
