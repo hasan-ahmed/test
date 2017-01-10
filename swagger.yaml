@@ -2,8 +2,8 @@ swagger: "2.0"
 info:
   description: |
     # Introduction
-    This API document outlines how you can access different Nuance services using our concise, yet flexible HTTP API.
-    This API provides access to the following services:
+    This  document outlines how you can use a client application access different Nuance services using our HTTP API.
+    Nuance's API provides access to the following services:
       - Speech Recognition
       - Dialog
       - Speech Recognition & Dialog
@@ -12,21 +12,19 @@ info:
       - Text to Speech (TTS)
       - Vocal Password
     # API Basics
-      - All requests must include the `Content-Type: application/json`
+      - All requests must be sent with a JSON body and must include the `Content-Type: application/json request header.
+      - For every request, you have the option of including an optional user id (ie: representing a specific client in your backend). In doing so, the response returned to you will take into account the past interaction history that the Nuance API has had with that user.
+      - All audio files must be in WAV, MP4 or AAC format.
+      - All audio returned from the Nuance API are a stream of RAW PCM data that your application is in charge of processing.
     # Authentication
     You must include the following header in every request to authenticate:
       - `nmaid: <your nmaid>`
       - `nmaidkey: <your nmaid key>`
+    You must makre sure that your application does not expose these credentials to end users.
   x-logo:
     url: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a8/Nuance_Communications_logo.svg/640px-Nuance_Communications_logo.svg.png"
   version: "1.0.0"
   title: Nuance HTTP API
-  termsOfService: http://nuancecommunications.com
-  contact:
-    email: hasan.ahmed@nuance.com
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
 host: <ip>
 basePath: /nina-webapi/
 schemes:
@@ -37,7 +35,7 @@ tags:
   - name: TTS
     description: Text To Speech Functions
   - name: NLU
-    description: Natural Language Understading Functions
+    description: Natural Language Understanding Functions
   - name: Dialog
     description: Dialog Functions
 paths:
@@ -46,7 +44,7 @@ paths:
       tags:
         - Speech Recognition
       summary: Speech Recognition
-      description: "Does speech recognition operations on an audio file using the MREC , NTE or NR engines."
+      description: "Does speech recognition operations on an audio file using the MREC , NTE or NR engines and returns the results."
       operationId: speechRecognition
       consumes:
         - application/json
@@ -55,7 +53,6 @@ paths:
       parameters:
         - in: body
           name: body
-          description: "`sr_audio_file` on which the speech recognition is to be done"
           required: true
           schema:
             $ref: "#/definitions/Speech_Reco_Payload"
@@ -73,7 +70,7 @@ paths:
       tags:
         - TTS
       summary: Text To Speech
-      description: "Does TTS operations on the provided string."
+      description: "Does TTS operations on the provided string and returns the results."
       operationId: TTS
       consumes:
         - application/json
@@ -97,7 +94,7 @@ paths:
       tags:
         - NLU
       summary: NLU
-      description: "Does NLU operations on a text string and returns the results"
+      description: "Does NLU operations on a text string using the NR or NLE engines and returns the results."
       operationId: NLU
       consumes:
         - application/json
@@ -123,7 +120,7 @@ paths:
       tags:
         - NLU
       summary: Speech Recognition And NLU
-      description: "Performs speech recognition and NLU operations on a given audio file. "
+      description: "Performs speech recognition and NLU operations on a given audio file using the NR or NLE engines and returns the results. "
       operationId: SpeechRecognitionAndNLU
       consumes:
         - application/json
@@ -149,7 +146,7 @@ paths:
       tags:
         - Dialog
       summary: Speech Recognition And Dialog
-      description: "Performs speech recognition and Dialog operations on a given audio file. "
+      description: "Performs speech recognition and Dialog operations on a given audio file using the MREC, NR or NTE engines and returns the results."
       operationId: SpeechRecognitionAndDialog
       consumes:
         - application/json
@@ -175,7 +172,7 @@ paths:
       tags:
         - Dialog
       summary: Dialog
-      description: "Performs dialog operations on a given input string text."
+      description: "Performs dialog operations on a given input string text using the MREC, NTE or NR engines and returns the results."
       operationId: Dialog
       consumes:
         - application/json
@@ -207,7 +204,7 @@ definitions:
         type: string
         example: https://dl.dropboxusercontent.com/s/4ygn9m8wscadl22/TestAudioUpload.wav
       sr_engine:
-        description: The sr_engine parameter is optional, the default engine is specified by your licence file (specific to a given NMAID ID).
+        description: The sr_engine parameter is optional, the default engine is specified by your licence file (specific to a given NMAID ID) This value must be MREC, NTE or NR.
         type: string
         example: MREC, NR, or NTE
       sr_engine_parameters:
