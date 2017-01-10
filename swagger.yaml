@@ -147,7 +147,7 @@ paths:
   /SpeechRecognitionAndDialog:
     post:
       tags:
-        - NLU
+        - Dialog
       summary: Speech Recognition And Dialog
       description: "Performs speech recognition and Dialog operations on a given audio file. "
       operationId: SpeechRecognitionAndDialog
@@ -160,7 +160,7 @@ paths:
           name: body
           required: true
           schema:
-            $ref: "#/definitions/Speech_Reco_NLU_Payload"
+            $ref: "#/definitions/Speech_Reco_Dialog_Payload"
       responses:
         "200":
           description: Successful operation.
