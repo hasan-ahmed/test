@@ -18,7 +18,7 @@ info:
       - All audio returned from the Nuance API are a stream of RAW PCM data that your application is in charge of processing.
     # Authentication
     You must include the following header in every request to authenticate. You must makre sure that your application does not expose these credentials to end users.:
-      - `nmaid: <your nmaid>`
+      - `nmaid: <your nmaid>`,
       - `nmaidkey: <your nmaid key>`
   x-logo:
     url: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a8/Nuance_Communications_logo.svg/640px-Nuance_Communications_logo.svg.png"
@@ -43,7 +43,7 @@ paths:
       tags:
         - Speech Recognition
       summary: Speech Recognition
-      description: "Does speech recognition operations on an audio file using the MREC , NTE or NR engines and returns the results."
+      description: "Does speech recognition operations on an audio file using the MREC, NTE or NR engines and returns the results."
       operationId: speechRecognition
       consumes:
         - application/json
