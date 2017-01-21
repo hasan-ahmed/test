@@ -270,6 +270,14 @@ definitions:
         type: string
         description: The Company Name. 
         example: My Company Name
+      appName:
+        type: string
+        description: The App Name. 
+        example: My App Name
+      cloudModelVersion:
+        type: string
+        description: The Cloud Model Version. 
+        example: 1.0.0  
       user:
         description: The user id  for who this request is being executed.
         type: string
