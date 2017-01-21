@@ -88,7 +88,7 @@ paths:
           description: Bad request. Invalid or missing parameter.
         "401":
           description: Unauthorized. API key is missing or invalid.
-  /NLU:
+  /NinaDoNLU:
     post:
       tags:
         - NLU
