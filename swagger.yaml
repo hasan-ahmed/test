@@ -266,6 +266,15 @@ definitions:
         description: This parameter is an optional json object and only looked at when nlu_engine = NLE.
         allOf:
           - $ref: '#/definitions/nlu_engine_parameters'
+      companyName:
+        type:string
+        example: MyCompanyName
+      appName:
+        type: string
+        example: MyAppName
+      cloudModelVersion:
+        type: string
+        example: 1.0.0
       user:
         description: The user id  for who this request is being executed.
         type: string
