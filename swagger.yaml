@@ -37,6 +37,8 @@ tags:
     description: Natural Language Understanding Functions
   - name: Dialog
     description: Dialog Functions
+  - name: Vocal Password
+    description: Vocal password functions allow you to authenticate a user using their voice.
 paths:
   /DoSpeechRecognition:
     post:
@@ -105,32 +107,6 @@ paths:
           required: true
           schema:
             $ref: "#/definitions/nlu_payload"
-      responses:
-        "200":
-          description: Successful operation.
-          schema:
-            $ref: "#/definitions/nlu_response"
-        "400":
-          description: Bad request. Invalid or missing parameter.
-        "401":
-          description: Unauthorized. API key is missing or invalid.
-  /SpeechRecognitionAndNLU:
-    post:
-      tags:
-        - NLU
-      summary: Speech Recognition And NLU
-      description: "Performs speech recognition and NLU operations on a given audio file using the NR or NLE engines and returns the results. "
-      operationId: SpeechRecognitionAndNLU
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          required: true
-          schema:
-            $ref: "#/definitions/Speech_Reco_NLU_Payload"
       responses:
         "200":
           description: Successful operation.
