@@ -197,6 +197,7 @@ definitions:
     type: object
     required:
       - sr_audio_file
+      - sr_engine
     properties:
       sr_audio_file:
         description: Direct URL to the audio file. Must be a WAV, MP4 or AAC file.
