@@ -268,13 +268,8 @@ definitions:
           - $ref: '#/definitions/nlu_engine_parameters'
       companyName:
         type: string
-        example: MyCompanyName
-      appName:
-        type: string
-        example: MyAppName
-      cloudModelVersion:
-        type: string
-        example: 1.0.0
+        description: The Company Name. 
+        example: My Company Name
       user:
         description: The user id  for who this request is being executed.
         type: string
