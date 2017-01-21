@@ -267,7 +267,7 @@ definitions:
         allOf:
           - $ref: '#/definitions/nlu_engine_parameters'
       companyName:
-        type:string
+        type: string
         example: MyCompanyName
       appName:
         type: string
