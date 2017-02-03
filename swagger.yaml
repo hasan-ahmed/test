@@ -190,7 +190,33 @@ paths:
         "400":
           description: Bad request. Invalid or missing parameter.
         "401":
-          description: Unauthorized. API key is missing or invalid.        
+          description: Unauthorized. API key is missing or invalid.
+  /CognitiveInterface:
+    post:
+      tags:
+        - Dialog
+      summary: CognitiveInterface
+      description: "An upcoming nuance platform being built in-conjunction with WEB APIs for hosting various new and core cognitive services like Nina Knowledge , Nina Insight & Nina Foresight. View it at: http://107.178.217.219/CognitivePlatform/"
+      operationId: Dialog
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: "#/definitions/dialog_payload"
+      responses:
+        "200":
+          description: Successful operation.
+          schema:
+            $ref: "#/definitions/dialog_response"
+        "400":
+          description: Bad request. Invalid or missing parameter.
+        "401":
+          description: Unauthorized. API key is missing or invalid.                
   /VocalPassword/ninaEnrollUser:
     post:
       tags:
