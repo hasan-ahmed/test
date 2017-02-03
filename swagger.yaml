@@ -202,12 +202,6 @@ paths:
         - application/json
       produces:
         - application/json
-      parameters:
-        - in: body
-          name: body
-          required: true
-          schema:
-            $ref: "#/definitions/dialog_payload"
       responses:
         "200":
           description: Successful operation.
