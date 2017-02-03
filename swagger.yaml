@@ -191,6 +191,13 @@ paths:
           description: Bad request. Invalid or missing parameter.
         "401":
           description: Unauthorized. API key is missing or invalid.        
+  /
+    post:
+      tags:
+        - Gognitive Platform
+      summary: An upcoming nuance platform being built in-conjunction with WEB APIs for hosting various new and core cognitive services like Nina Knowledge , Nina Insight & Nina Foresight.
+      description: "http://107.178.217.219/CognitivePlatform/"
+      operationId: SpeechRecognitionAndDialog
   /VocalPassword/ninaEnrollUser:
     post:
       tags:
